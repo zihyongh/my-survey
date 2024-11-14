@@ -1,0 +1,230 @@
+/* Stepper 背景色 */
+.mat-stepper-horizontal {
+  background-color: #faf9fd;
+}
+
+/* 頂部換頁標籤 */
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background-color: #b46732;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+  background-color: #a4a2d6;
+}
+
+/* 表單容器樣式 */
+// 第一步驟
+.custom-form1 {
+  max-width: 400px;
+  margin: 0 auto;
+  /* 確保所有輸入框的寬度基礎相同 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+// 第二步驟
+.custom-form2 {
+  // max-width: 400px;
+  margin: 0 50px;
+  width: 70%;
+  border: none;
+  box-sizing: border-box;
+}
+
+.step-two-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+
+
+/* 表單群組 */
+.form-group,
+.form-group-inline {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group-inline {
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-group label,
+.form-group-inline label {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.form-group-inline label {
+  margin-right: 4px;
+  // 控制標籤和勾選框之間的距離
+  margin-top: 5px;
+}
+
+
+/* 表單輸入框樣式 */
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 8px;
+  font-size: 1rem;
+  border: none;
+  background-color: rgb(222, 238, 255);
+  color: #3A3A3A;
+  outline: none;
+  width: 400px;
+  box-sizing: border-box; // 確保 padding 不影響寬度
+}
+
+
+/* Textarea 專屬樣式 */
+textarea {
+  max-width: 400px; // 防止寬度超出父容器
+  max-height: 300px; // 可根據需求設置最大高度
+  resize: vertical; // 允許只在垂直方向調整大小
+}
+
+
+
+/* 錯誤訊息樣式  */
+.error {
+  color: #d9534f;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.errorRed {
+  border: #d9534f;
+}
+
+.button1 {
+  text-align: right; // 將按鈕移到右邊
+  margin-top: 5px;
+}
+
+.button2 {
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+
+
+/* 第二步驟問題表格樣式*/
+.tableRight {
+  flex: 1;
+  width: 300px;
+  max-width: 50%;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.tableRight th,
+.tableRight td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tableRight th {
+  background-color: #A3B0C7;
+}
+
+
+// 第三步驟
+// 題目和說明
+.title {
+  text-align: center;
+  padding: 30px;
+  font-family: sans-serif;
+
+}
+
+#small {
+  font-size: 14px;
+  font-family: Lucida Calligraphy;
+}
+
+
+
+// 基本資料輸入欄區
+.custom-form3 .form-container{
+  background-color: #EBEAE9;
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 700px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.custom-form3 .form-container .form-group {
+  display: flex;
+  /* 使用 flexbox 來排列標籤和輸入框 */
+  flex-direction: row;
+  align-items: center;
+  /* 垂直對齊 */
+  margin-bottom: 15px;
+  /* 每組的下邊距 */
+
+}
+
+.custom-form3 .form-container label {
+  width: 60px;
+  /* 標籤的固定寬度 */
+  margin-right: 2px;
+  /* 標籤和輸入框之間的間距 */
+  font-weight: bold;
+}
+
+.custom-form3 .form-container  input {
+  flex: 1;
+  /* 使輸入框佔據剩餘的空間 */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #fefbfb;
+}
+
+.custom-form3 .form-container input::placeholder {
+  color: #888;
+  /* Placeholder的顏色 */
+
+}
+
+
+
+// 問題區域
+.questionArea {
+  width: 700px;
+  padding: 5px;
+  margin: auto;
+}
+
+.questionArea p{
+  margin-bottom: 20px;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+}
+
+
+
+

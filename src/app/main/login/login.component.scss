@@ -1,0 +1,85 @@
+// /* 設定整個頁面背景色 */
+// body,
+// html {
+//   height: 100%;
+//   margin: 0;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background-color: #f0f2f5;
+//   /* 可調整成你想要的背景色 */
+// }
+
+.backGround{
+  background-color: rgb(190, 190, 190);
+  min-height: 100vh;                     // 設定全螢幕高度
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 將 loginContainer 置中並設定寬度與背景色 */
+.loginContainer {
+  background-color: #ffffff;
+  opacity: 0.8;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  text-align: center;
+}
+
+.loginTitle h2 {
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.loginTitle p {
+  font-size: 20px;
+}
+
+.loginArea {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  position:relative;
+}
+
+.loginArea label {
+  margin-bottom: 5px;
+}
+
+.loginArea input {
+  width: 90%;
+  padding: 8px;
+  padding-right: 40px;            // 預留空間給icon
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-signin {
+  width: 90%;
+  padding: 8px;
+  margin-top: 20px;
+  background-color: #9aadcf;    // 按鈕背景色，可調整
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-signin:disabled {
+  background-color: #d4d4d4;
+  cursor: not-allowed;
+}
+
+
+.password-toggle-icon{
+  position: absolute;
+  right: 20px;
+  top: 34px;
+}

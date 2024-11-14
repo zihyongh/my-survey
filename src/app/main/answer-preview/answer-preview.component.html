@@ -1,0 +1,73 @@
+<main id="main">
+  <!-- 題目和說明 -->
+  <div class="title" id="title">
+    <h1 id="big">{{confirmAns.title}}</h1>
+    <p id="small">{{confirmAns.describe}}</p>
+  </div>
+
+
+  <!-- 基本資料輸入欄 -->
+  <div class="form-container">
+
+    <div class="form-group">
+      <span>姓名:</span>
+      {{confirmAns.answers.name}}
+    </div>
+
+    <div class="form-group">
+      <span>電話:</span>
+      {{confirmAns.answers.phone}}
+    </div>
+
+    <div class="form-group">
+      <span>Email:</span>
+      {{confirmAns.answers.email}}
+
+    </div>
+
+    <div class="form-group">
+      <span>年紀:</span>
+      {{confirmAns.answers.age}}
+    </div>
+
+  </div>
+
+  <div class="questionArea">
+
+    <!-- 題目答案確認 -->
+    @for (title of confirmAns.questionData; track $index) {
+      <!-- 單選 -->
+      @if(title.questionType == 's'){
+        <p>{{title.questionId}}.{{title.questionTitle}}</p>
+        @for (ans of title.questionContent; track $index) {
+          @if(confirmAns.answers.questionS == ans.code){
+            <p>{{ans.optionName}}</p>
+          }
+        }
+      }
+      <!-- 多選 -->
+      @if (title.questionType == 'm') {
+        <p>{{title.questionId}}.{{title.questionTitle}}</p>
+        @for (ans of title.questionContent; track $index){
+          @for (mutiQ of confirmAns.answers.questionM; track $index) {
+            @if (mutiQ == ans.code){
+              <p>{{ans.optionName}}</p>
+            }
+          }
+        }
+      }
+      <!-- 填充 -->
+      @if(title.questionType == 't'){
+        <p>{{title.questionId}}.{{title.questionTitle}}</p>
+        <p>{{confirmAns.answers.questionT}}</p>
+      }
+    }
+
+
+    <!-- 按鈕 -->
+    <div style="text-align: right;">
+      <button style="margin-right: 5px;" (click)="backToSurvey()">回上頁</button>
+      <button (click)="saveToList()">儲存</button>
+  </div><br>
+  </div>
+</main>

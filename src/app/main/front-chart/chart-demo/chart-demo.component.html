@@ -1,0 +1,33 @@
+<div class = 'chartArea'>
+  <!-- 不是填充題就顯示圖表 -->
+   <div class="chart">
+    @if (questData.questionType != 't'){
+      <div class="canvasCss">
+        <canvas id="{{dataId}}"></canvas>
+      </div>
+     }
+   </div>
+
+
+
+  <div class="title">
+    <h3>題目： {{questData.questionTitle}}
+
+      <!-- 不是填充題就顯示選項和數據 -->
+      <!-- 是填充題就顯示文字 -->
+        @if (questData.questionType != 't') {
+          @for (label of questData.labels; track $index) {
+            <h5 style="padding-left: 15px;">選項:{{questData.labels[$index]}}
+              <span style="float:inline-end;">{{ questData.data[$index] }}</span>
+            </h5>
+          }
+        }@else {
+          @for (data of questData.data; track $index) {
+            <h5 class="typeTCss">{{data}}</h5>
+          }
+        }
+
+    </h3>
+  </div>
+
+</div>

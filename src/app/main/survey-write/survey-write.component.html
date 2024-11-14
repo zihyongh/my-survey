@@ -1,0 +1,86 @@
+<main id="main">
+  <!-- 題目和說明 -->
+  <div class="title" id="title">
+    <h1 id="big">{{survey.title}}</h1>
+    <p id="small">{{survey.describe}}</p>
+  </div>
+
+
+  <form [formGroup]="basicFormGroup" >
+
+    <!-- 基本資料輸入欄 -->
+    <div class="form-container">
+      <div class="form-group">
+        <label for="name">姓名:</label>
+        <input type="text" id="name" placeholder="請輸入姓名(必填)" formControlName="name" >
+      </div>
+
+      <div class="form-group">
+        <label for="phone">手機:</label>
+        <input type="tel" id="phone" placeholder="請輸入手機號碼(必填)" formControlName="phone" >
+      </div>
+
+      <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" placeholder="請輸入E-mail" formControlName="email">
+      </div>
+
+      <div class="form-group">
+        <label for="age">年齡:</label>
+        <input type="number" id="age" placeholder="請輸入年齡" formControlName="age">
+      </div>
+    </div>
+
+
+    <!-- 題目區域 -->
+    <div class="questionArea">
+
+      @for (mySurvey of survey.questionData; track $index) {
+        <p>{{mySurvey.questionId}}.{{mySurvey.questionTitle}}
+        @if (mySurvey.questionMust){
+          <span style="color:brown">*</span>
+        }
+        </p>
+
+
+        <!-- 單選題 -->
+        @if(mySurvey.questionType == 's') {
+          @for (option of mySurvey.questionContent; track $index) {
+            <label class="option-label">
+              <input type="radio" value="{{option.code}}" formControlName="questionS">
+              {{option.optionName}}
+            </label>
+            <br>
+          }
+        }
+
+        <!-- 多選題 -->
+        @if(mySurvey.questionType == 'm') {
+          @for (option of mySurvey.questionContent; track $index) {
+            <label class="option-label">
+              <input type="checkbox" value="{{option.code}}" [checked]="selectedOptions.includes(option.code)"
+              (change)="onCheckboxChange(option.code, $event)"
+              >
+              {{option.optionName}}
+            </label>
+            <br>
+          }
+        }
+
+        <!-- 填充題 -->
+        @if(mySurvey.questionType == 't') {
+          <textarea formControlName="questionT"></textarea>
+          <br>
+          <br>
+        }
+      }
+
+    </div>
+
+    <div style="text-align: right;">
+      <button style="margin-right: 5px;" type="button" (click)="backToList()">回上頁</button>
+      <button type="button" (click)="saveAndPreview()" [disabled]="!basicFormGroup.valid">預覽</button>
+    </div>
+
+  </form>
+</main>

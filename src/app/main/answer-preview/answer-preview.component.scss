@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+#main {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: auto;
+  width: 800px;
+}
+
+
+
+// 題目和說明
+.title {
+  text-align: center;
+  padding: 30px;
+  font-family: sans-serif;
+
+}
+
+#small {
+  font-size: 14px;
+  font-family: Lucida Calligraphy;
+}
+
+// 基本資料輸入欄區
+.form-container {
+  background-color: #EBEAE9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 700px;
+  height: 180px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.form-container .form-group {
+  display: flex;
+  /* 使用 flexbox 來排列標籤和輸入框 */
+  align-items: center;
+  /* 垂直對齊 */
+  margin-bottom: 15px;
+  /* 每組的下邊距 */
+
+}
+
+.form-container span {
+  width: 80px;
+  /* 標籤的固定寬度 */
+  margin-right: 2px;
+  /* 標籤和輸入框之間的間距 */
+  font-weight: bold;
+}
+
+
+// 問題答案確認區
+.questionArea {
+  width: 700px;
+  padding: 5px;
+  margin: auto;
+}

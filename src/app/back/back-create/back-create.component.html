@@ -1,0 +1,253 @@
+<mat-horizontal-stepper linear=!isLinear>
+  <!-- 第一步驟 -->
+  <mat-step label="問卷標題與說明" [stepControl]="basicFormGroup1">
+    <form [formGroup]="basicFormGroup1" class="custom-form1">
+      <h4>問卷標題與說明</h4>
+
+      <div class="form-group">
+        <label for="title">問卷標題</label>
+        <input id="title" type="text" formControlName="title" placeholder="請輸入問卷標題" required>
+        <div *ngIf="basicFormGroup1.get('title')?.invalid && basicFormGroup1.get('title')?.touched" class="error">
+          此欄為必填!
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="describe">問卷說明</label>
+        <textarea id="describe" formControlName="describe" placeholder="請輸入問卷說明" required></textarea>
+        <div *ngIf="basicFormGroup1.get('describe')?.invalid && basicFormGroup1.get('describe')?.touched" class="error">
+          此欄為必填!
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="startDate">開始日期</label>
+        <!-- input可以綁定ngmodel -->
+        <input id="startDate" type="date" [min]="startMinDate" formControlName="startDate" required>
+        <div *ngIf="basicFormGroup1.get('startDate')?.invalid && basicFormGroup1.get('startDate')?.touched"
+          class="error">
+          此欄為必填!
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="endDate">結束日期</label>
+        <!-- input可以綁定ngmodel -->
+        <input id="endDate" type="date" [min]="endMinDate" formControlName="endDate" required>
+        <div *ngIf="basicFormGroup1.get('endDate')?.invalid && basicFormGroup1.get('endDate')?.touched" class="error">
+          此欄為必填!
+        </div>
+      </div>
+    </form>
+
+    <br>
+    <div class="button1">
+      <button mat-button>取消</button>
+      <button mat-button matStepperNext [disabled]="!basicFormGroup1.valid">前進到「問卷問題」</button>
+    </div>
+
+  </mat-step>
+
+
+
+
+
+
+  <!-- 第二步驟 -->
+  <mat-step label="問卷問題">
+    <div class="step-two-container">
+      <div class="form-container">
+        <form [formGroup]="basicFormGroup2" class="custom-form2">
+          <h4>建立問卷問題</h4>
+
+          <!-- 問題輸入框 -->
+          <div class="form-group">
+            <label for="question">問題</label>
+            <input id="question" type="text" formControlName="questionTitle" placeholder="請輸入問題" required>
+            <div *ngIf="basicFormGroup2.get('question')?.invalid && basicFormGroup2.get('question')?.touched"
+              class="error">
+              此欄為必填!
+            </div>
+          </div>
+
+          <!-- 題目類型下拉式選單 -->
+          <div class="form-group">
+            <label for="option">題目類型</label>
+            <select id="option" placeholder="請選擇題目類型" formControlName="questionType" required>
+              <option value="" disabled selected>請選擇題目類型</option>
+              <option value="s">單選題</option>
+              <option value="m">多選題</option>
+              <option value="t">填充題</option>
+            </select>
+            <div *ngIf="basicFormGroup2.get('option')?.invalid && basicFormGroup2.get('option')?.touched" class="error">
+              此欄為必填!
+            </div>
+          </div>
+
+          <!-- 必填選擇框 -->
+          <div class="form-group-inline">
+            <label for="questionMust">必填</label>
+            <input id="questionMust" class="mustSelect" type="checkbox" value=checkboxValue
+              formControlName="questionMust" >
+          </div>
+
+
+          <!-- 選項輸入框 -->
+          <div class="form-group">
+            <label for="questionInput">選項 (多個答案請以分號分隔)</label>
+            <textarea id="questionInput" formControlName="questionInput" placeholder="請輸入答案選項"></textarea>
+          </div>
+
+          <!-- 加入按鈕 -->
+          <button (click)="saveAndNext2()" mat-flat-button [disabled]="!basicFormGroup2.valid">加入</button>
+        </form>
+
+
+      </div>
+
+      <!-- 問題表格 -->
+      <div class="icon">
+        <mat-icon (click)="deleteSelectedQuestions()" style="cursor: pointer;">delete</mat-icon>
+      </div>
+
+      <table class="tableRight">
+        <thead>
+          <tr>
+            <th></th>
+            <th>編號</th>
+            <th>問題</th>
+            <th>題目類型</th>
+            <th>必填</th>
+            <th>選項</th>
+          </tr>
+        </thead>
+        <tbody>
+            @for (myQ of questionData; track $index ; let i = $index) {
+            <tr>
+            <td><mat-checkbox (change)="onCheckboxChange($event, i)"></mat-checkbox></td>
+            <td>{{ i + 1 }}</td>
+            <td>{{ myQ.questionTitle }}</td>
+            <td>
+              @if(myQ.questionType == 's'){
+                {{'單選題'}}
+              }
+              @if(myQ.questionType == 'm'){
+                {{'多選題'}}
+              }
+              @if(myQ.questionType == 't'){
+                {{'填充題'}}
+              }
+            </td>
+            <td>{{ myQ.questionMust == true ? '是' : '' }}</td>
+            <td>{{ myQ.questionInput }}</td>
+            <td><mat-icon (click)="editQuestion(i)" style="cursor: pointer;">edit</mat-icon></td>
+            </tr>
+            }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 前進到確認的條件 -->
+    <div class="button2">
+      <button mat-button matStepperPrevious>回到「問卷標題與說明」</button>
+      <button mat-button matStepperNext [disabled]="questionData.length == 0" (click)="save()">前進到「確認」</button>
+    </div>
+
+  </mat-step>
+
+
+
+
+
+
+
+  <!-- 第三步驟 -->
+  <mat-step label="確認">
+
+    <!-- 題目和說明 -->
+    <div class="title" id="title">
+      <h2 id="big">{{survey.title}}</h2>
+      <p id="small">{{survey.describe}}</p>
+    </div>
+
+    <form class="custom-form3">
+
+      <!-- 基本資料輸入欄 -->
+      <div class="form-container">
+        <div class="form-group">
+          <label for="name">姓名:</label>
+          <input type="text" id="name" placeholder="請輸入姓名(必填)"  >
+        </div>
+
+        <div class="form-group">
+          <label for="phone">手機:</label>
+          <input type="tel" id="phone" placeholder="請輸入手機號碼(必填)"  >
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" placeholder="請輸入E-mail" >
+        </div>
+
+        <div class="form-group">
+          <label for="age">年齡:</label>
+          <input type="number" id="age" placeholder="請輸入年齡">
+        </div>
+      </div>
+
+
+
+      <!-- 題目區域 -->
+      <div class="questionArea">
+
+        @for (mySurvey of survey.questionData; track $index ; let i = $index) {
+          <p>{{i + 1}}.{{mySurvey.questionTitle}}
+          @if (mySurvey.questionMust){
+            <span style="color:brown">*</span>
+          }
+          </p>
+
+
+          <!-- 單選題 -->
+          @if(mySurvey.questionType == 's') {
+            @for (option of mySurvey.questionContent; track $index) {
+              <label class="option-label">
+                <input type="radio" value="{{option.code}}">
+                {{option.optionName}}
+              </label>
+              <br>
+            }
+          }
+
+          <!-- 多選題 -->
+          @if(mySurvey.questionType == 'm') {
+            @for (option of mySurvey.questionContent; track $index) {
+              <label class="option-label">
+                <input type="checkbox" value="{{option.code}}" >
+                {{option.optionName}}
+              </label>
+              <br>
+            }
+          }
+
+          <!-- 填充題 -->
+          @if(mySurvey.questionType == 't') {
+            <textarea></textarea>
+            <br>
+            <br>
+          }
+        }
+
+      </div>
+
+
+
+    </form>
+
+    <button (click)="test()">測試</button>
+
+    <button mat-button matStepperPrevious>回到「問卷問題」</button>
+    <button mat-button matStepperNext (click)="test()">儲存</button>
+
+  </mat-step>
+</mat-horizontal-stepper>

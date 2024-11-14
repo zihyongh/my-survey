@@ -1,0 +1,132 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+.sec1 {
+  height: 100px;
+  width: 600px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+/* 搜尋容器通用樣式 */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #f9f9f9;
+  padding: 6px 15px;
+  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 標籤通用樣式 */
+.search-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* 輸入框通用樣式 */
+.search-input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #d1d1d1;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #87bfb7;
+}
+
+/* 按鈕通用樣式 */
+.search-button {
+  padding: 8px 16px;
+  font-size: 15px;
+  color: #fff;
+  background-color: #87bfb7;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #73a9a1;
+}
+
+/* 名稱搜尋特定樣式 */
+.name-search-container .search-input {
+  width: 400px;
+}
+
+/* 日期搜尋特定樣式 */
+.date-search-container .search-input {
+  border-radius: 8px;
+}
+
+.date-search-container .search-button {
+  background-color: #a0a8d5;
+}
+
+.date-search-container .search-button:hover {
+  background-color: #7b83b5;
+}
+
+
+// icon區域
+.iconArea {
+  width: 800px;
+  height: 3px;
+  margin: 0 auto;
+}
+
+.material-symbols-rounded {
+  color: #555;
+}
+
+.material-symbols-rounded:hover {
+  color: #d1d1d1;
+}
+
+
+// 表格樣式
+// 表格樣式
+.tableArea {
+  width: 800px;
+  margin: auto;
+  margin-top: 40px;
+  gap: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pageArea {
+  width: 800px;
+  margin: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Noto Serif TC", serif;
+}
+
+.mat-mdc-row {
+  height: 40px !important;
+  // background-color: antiquewhite !important;
+}
+
+.mat-mdc-row:nth-child(odd) {
+  background-color: #F4F6F8 !important;
+}
+
+.mat-mdc-row:nth-child(even) {
+  background-color: #ffffff !important;
+}
+
+.mat-mdc-cell,
+.mat-mdc-header-cell {
+  border: none !important;
+}
+
+.mat-mdc-header-cell {
+  background-color: #A3B0C7 !important;
+  font-weight: bold !important;
+}
